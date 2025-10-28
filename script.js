@@ -52,6 +52,17 @@ restartBtn.addEventListener('click', () => {
     resetGame();
 });
 
+document.addEventListener('keydown', (e) => {
+    const key = e.key;
+    if (key >= '1' && key <= '4' && gameScreen.classList.contains('active')) {
+        const buttons = document.querySelectorAll('.option-btn');
+        const index = parseInt(key) - 1;
+        if (buttons[index]) {
+            buttons[index].click();
+        }
+    }
+});
+
 function startGame() {
     resetGame();
     showScreen(gameScreen);
