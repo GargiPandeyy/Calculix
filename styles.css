@@ -120,8 +120,12 @@ body {
 }
 
 .diff-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.diff-btn:active {
+    transform: translateY(-2px) scale(0.98);
 }
 
 .diff-btn.easy {
@@ -231,6 +235,11 @@ body {
     background: rgba(255, 255, 255, 0.4);
     transform: scale(1.05);
     border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.option-btn:active {
+    transform: scale(0.95);
 }
 
 .option-btn.correct {
