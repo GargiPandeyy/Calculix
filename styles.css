@@ -148,11 +148,21 @@ body {
     color: white;
 }
 
-.score-display, .timer-display {
+.score-display, .combo-display, .timer-display {
     background: rgba(255, 255, 255, 0.2);
     padding: 15px 25px;
     border-radius: 15px;
     backdrop-filter: blur(10px);
+}
+
+.combo-display {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3));
+    animation: comboPulse 1s ease-in-out infinite;
+}
+
+@keyframes comboPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 .question-container {
@@ -243,6 +253,38 @@ body {
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
 }
 
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.stat-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: white;
+}
+
 .restart-btn {
     width: 100%;
     padding: 20px;
@@ -268,6 +310,16 @@ body {
         font-size: 3rem;
     }
 
+    .game-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .score-display, .combo-display, .timer-display {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+
     .question-text {
         font-size: 2rem;
     }
@@ -275,5 +327,9 @@ body {
     .option-btn {
         font-size: 1.5rem;
         padding: 20px;
+    }
+
+    .stats {
+        flex-direction: column;
     }
 }
