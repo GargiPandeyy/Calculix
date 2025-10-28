@@ -90,6 +90,8 @@ function resetGame() {
     scoreEl.textContent = score;
     comboEl.textContent = combo;
     clearInterval(timerInterval);
+    timerEl.parentElement.style.background = 'rgba(255, 255, 255, 0.2)';
+    timerEl.parentElement.style.animation = 'none';
 }
 
 function showScreen(screen) {
@@ -101,6 +103,11 @@ function startTimer() {
     timerInterval = setInterval(() => {
         timeLeft--;
         timerEl.textContent = timeLeft;
+
+        if (timeLeft <= 10) {
+            timerEl.parentElement.style.background = 'linear-gradient(135deg, #eb3349, #f45c43)';
+            timerEl.parentElement.style.animation = 'timerPulse 0.5s ease-in-out infinite';
+        }
 
         if (timeLeft <= 0) {
             endGame();

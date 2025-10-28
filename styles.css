@@ -177,6 +177,11 @@ body {
     50% { transform: scale(1.05); }
 }
 
+@keyframes timerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
 .question-container {
     text-align: center;
 }
