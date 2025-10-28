@@ -178,10 +178,10 @@ function generateOptions(correctAnswer) {
     shuffleArray(options);
 
     optionsEl.innerHTML = '';
-    options.forEach(option => {
+    options.forEach((option, index) => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
-        btn.textContent = option;
+        btn.innerHTML = `<span class="option-number">${index + 1}</span>${option}`;
         btn.addEventListener('click', () => checkAnswer(option, btn));
         optionsEl.appendChild(btn);
     });

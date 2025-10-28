@@ -215,6 +215,16 @@ body {
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+}
+
+.option-number {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    font-weight: 600;
 }
 
 .option-btn:hover {
