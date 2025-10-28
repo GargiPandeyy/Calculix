@@ -1,6 +1,7 @@
 let currentDifficulty = 'easy';
 let score = 0;
 let combo = 0;
+let maxCombo = 0;
 let correctCount = 0;
 let wrongCount = 0;
 let timeLeft = 30;
@@ -35,6 +36,8 @@ const optionsEl = document.getElementById('options');
 const scoreEl = document.getElementById('score');
 const comboEl = document.getElementById('combo');
 const timerEl = document.getElementById('timer');
+const resultTitle = document.getElementById('result-title');
+const resultMessage = document.getElementById('result-message');
 const finalScoreEl = document.getElementById('final-score');
 const correctCountEl = document.getElementById('correct-count');
 const wrongCountEl = document.getElementById('wrong-count');
@@ -85,6 +88,7 @@ function startGame() {
 function resetGame() {
     score = 0;
     combo = 0;
+    maxCombo = 0;
     correctCount = 0;
     wrongCount = 0;
     scoreEl.textContent = score;
@@ -194,6 +198,7 @@ function checkAnswer(selectedAnswer, btn) {
     if (selectedAnswer === currentAnswer) {
         btn.classList.add('correct');
         combo++;
+        if (combo > maxCombo) maxCombo = combo;
         correctCount++;
         score += combo;
         scoreEl.textContent = score;
@@ -231,6 +236,23 @@ function endGame() {
     const totalQuestions = correctCount + wrongCount;
     const accuracy = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
     accuracyEl.textContent = accuracy + '%';
+
+    if (accuracy === 100 && correctCount >= 10) {
+        resultTitle.textContent = 'Perfect!';
+        resultMessage.textContent = 'Flawless victory! You are a math genius!';
+    } else if (maxCombo >= 10) {
+        resultTitle.textContent = 'Amazing!';
+        resultMessage.textContent = `Incredible ${maxCombo}x combo!`;
+    } else if (accuracy >= 80) {
+        resultTitle.textContent = 'Great Job!';
+        resultMessage.textContent = 'You are doing great!';
+    } else if (accuracy >= 50) {
+        resultTitle.textContent = 'Good Effort!';
+        resultMessage.textContent = 'Keep practicing to improve!';
+    } else {
+        resultTitle.textContent = 'Game Over!';
+        resultMessage.textContent = 'Try again and beat your score!';
+    }
 
     showScreen(resultScreen);
 }

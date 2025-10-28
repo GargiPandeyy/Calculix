@@ -258,8 +258,17 @@ body {
     font-size: 3rem;
     color: white;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     font-weight: 900;
+}
+
+.result-message {
+    font-size: 1.2rem;
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 .final-score {
