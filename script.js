@@ -29,6 +29,7 @@ const startScreen = document.getElementById('start-screen');
 const gameScreen = document.getElementById('game-screen');
 const resultScreen = document.getElementById('result-screen');
 const diffButtons = document.querySelectorAll('.diff-btn');
+const difficultyBadge = document.getElementById('difficulty-badge');
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const scoreEl = document.getElementById('score');
@@ -68,6 +69,15 @@ function startGame() {
     showScreen(gameScreen);
     timeLeft = difficultySettings[currentDifficulty].time;
     timerEl.textContent = timeLeft;
+
+    difficultyBadge.textContent = currentDifficulty;
+    difficultyBadge.style.background = currentDifficulty === 'easy' ?
+        'linear-gradient(135deg, #11998e, #38ef7d)' :
+        currentDifficulty === 'medium' ?
+        'linear-gradient(135deg, #f093fb, #f5576c)' :
+        'linear-gradient(135deg, #fa709a, #fee140)';
+    difficultyBadge.style.color = currentDifficulty === 'hard' ? '#333' : 'white';
+
     startTimer();
     generateQuestion();
 }
