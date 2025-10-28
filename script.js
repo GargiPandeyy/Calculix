@@ -1,5 +1,8 @@
 let currentDifficulty = 'easy';
 let score = 0;
+let combo = 0;
+let correctCount = 0;
+let wrongCount = 0;
 let timeLeft = 30;
 let timerInterval;
 let currentAnswer;
@@ -29,8 +32,12 @@ const diffButtons = document.querySelectorAll('.diff-btn');
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const scoreEl = document.getElementById('score');
+const comboEl = document.getElementById('combo');
 const timerEl = document.getElementById('timer');
 const finalScoreEl = document.getElementById('final-score');
+const correctCountEl = document.getElementById('correct-count');
+const wrongCountEl = document.getElementById('wrong-count');
+const accuracyEl = document.getElementById('accuracy');
 const restartBtn = document.getElementById('restart');
 
 diffButtons.forEach(btn => {
@@ -56,7 +63,11 @@ function startGame() {
 
 function resetGame() {
     score = 0;
+    combo = 0;
+    correctCount = 0;
+    wrongCount = 0;
     scoreEl.textContent = score;
+    comboEl.textContent = combo;
     clearInterval(timerInterval);
 }
 
@@ -154,8 +165,11 @@ function checkAnswer(selectedAnswer, btn) {
 
     if (selectedAnswer === currentAnswer) {
         btn.classList.add('correct');
-        score++;
+        combo++;
+        correctCount++;
+        score += combo;
         scoreEl.textContent = score;
+        comboEl.textContent = combo;
 
         setTimeout(() => {
             allButtons.forEach(b => b.style.pointerEvents = 'auto');
@@ -163,6 +177,9 @@ function checkAnswer(selectedAnswer, btn) {
         }, 500);
     } else {
         btn.classList.add('wrong');
+        combo = 0;
+        wrongCount++;
+        comboEl.textContent = combo;
 
         allButtons.forEach(b => {
             if (parseInt(b.textContent) === currentAnswer) {
@@ -180,6 +197,13 @@ function checkAnswer(selectedAnswer, btn) {
 function endGame() {
     clearInterval(timerInterval);
     finalScoreEl.textContent = score;
+    correctCountEl.textContent = correctCount;
+    wrongCountEl.textContent = wrongCount;
+
+    const totalQuestions = correctCount + wrongCount;
+    const accuracy = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
+    accuracyEl.textContent = accuracy + '%';
+
     showScreen(resultScreen);
 }
 
